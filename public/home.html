@@ -1,6 +1,7 @@
 
        
        <section>
+          
          <div ng-controller="homeController">
             <md-toolbar id="toolbarcss" class="md-hue-2">
                 <div class="md-toolbar-tools">
@@ -9,15 +10,30 @@
                   </md-button>
           
                   <h2 id="textColor" flex md-truncate>Safe - Note Keeper</h2>
-          
+                  <input id="searchBox" class="form-control ng-pristine ng-valid" placeholder="Search Notes" type="text"/>
                   <md-button class="md-icon-button" aria-label="More">
                     <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
                   </md-button>
                 </div>
               </md-toolbar>
               <div align="center" id="cardcss">
-              <md-card style="width:1500px;height:850px" class="z-depth">
-                </md-card>
+               <!--   <div id="centerProcess">
+                      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    </div>-->
+              <md-grid-list layout-fill flex md-cols-sm="1" md-cols-md="2" md-cols-gt-md="2" md-row-height-sm="20%" md-row-height="15%" md-gutter="20px">
+                  <md-grid-tile ng-repeat="record in records">
+                      <md-card class="z-depth" layout-fill layout-padding ng-click="cardClicked(record)">
+                          <md-card-title>
+                            <md-card-title-text>
+                              <span class="md-headline">{{record.title}}</span>
+                              <span class="md-subhead">{{record.sub}}</span>
+                            </md-card-title-text>
+                          </md-card-title>
+                      </md-card>
+                  </md-grid-tile>
+              </md-grid-list>
               </div>
          </div>
        </section>
+       
+       
