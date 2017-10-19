@@ -38,8 +38,22 @@ app.controller('loginController',function($scope,$location){
     }
 });
 app.controller('homeController',function($scope,$location){
-    
+    $scope.records=[];
+    var rec1 = {
+        "title":"Pavan",
+        "sub":"Kumar"
+    };
+    var rec2 = {
+        "title":"Abhishek",
+        "sub":"Singh"
+    };
+    $scope.records.push(rec1);
+    $scope.records.push(rec2);
+
+    $scope.cardClicked = function(record){
+        //Card is clicked, Do something
+        alert("Card is clicked -- "+JSON.stringify(record));
+    }
     });
-    
 })()
 
