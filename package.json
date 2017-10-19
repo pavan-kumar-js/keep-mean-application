@@ -1,0 +1,18 @@
+{
+  "name": "keep",
+  "version": "1.0.0",
+  "description": "Sample keep app",
+  "main": "server.js",
+  "dependencies": {
+    "angular": "^1.6.6",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Pavan",
+  "license": "ISC"
+}

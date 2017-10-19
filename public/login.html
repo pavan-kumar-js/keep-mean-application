@@ -1,0 +1,28 @@
+<section>
+        <div ng-controller="loginController" id="central">
+           <md-card style="width:350px;height:340px" class="z-depth">
+              <md-content id="back">
+                  <div id ="text" align="left">
+                      <md-input-container id="widthprop">
+                         <label >Username</label>
+                         <input ng-model="username"/>
+                      </md-input-container>
+                      <br>
+                      <md-input-container id="widthprop">
+                         <label>Password</label>
+                         <input type="password" ng-model="password"/>
+                      </md-input-container>
+                   </div>
+                 <div id="loginbuttondiv" align="center">
+                    <md-button id="loginbutton" class="md-raised md-primary" ng-click="authorizeUserCredentials()">Login</md-button>
+                 </div>
+              </md-content>
+              <table style="width:100%" id="tableprop">
+                  <tr>
+                        <td align = "center"> <md-button class="md-primary" ng-click={{createAccount}}>Create Account</md-button></td>
+                    <td align = "center"> <md-button class="md-primary" ng-href="{{forgotPassword}}">Forgot Password</md-button></td>
+                      </tr>
+                      </table>
+           </md-card>
+        </div>
+     </section>
