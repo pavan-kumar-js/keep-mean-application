@@ -1,14 +1,14 @@
 (function(){
-    var app = angular.module('firstApp',['ngRoute','ngMaterial']);
+    var app = angular.module('safe',['ngRoute','ngMaterial']);
 app.config([ '$routeProvider', '$locationProvider',
 function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
         templateUrl : 'login.html',
-        controller : 'sampleController'
+        controller : 'loginController'
     })
-    $routeProvider.when('/createAccountView', {
-        templateUrl : 'createAccountView.html',
-        controller : 'createAccount'
+    $routeProvider.when('/home', {
+        templateUrl : 'home.html',
+        controller : 'homeController'
     }).otherwise({
         redirectTo : 'index.html'
     });
@@ -16,7 +16,7 @@ function($routeProvider, $locationProvider) {
 }
 ]);
 
-app.controller('sampleController',function($scope,$location){
+app.controller('loginController',function($scope,$location){
     $scope.myname = "Pavan";
     $scope.username=  "";   
     $scope.password = "";
@@ -26,12 +26,18 @@ app.controller('sampleController',function($scope,$location){
     $scope.authorizeUserCredentials= function(){
         var username = $scope.username;
         var password = $scope.password;
-        $location.path("/createAccountView");
+        if(username == "admin" && password =="admin"){
+            $location.path("/home");
+        }
+        else{
+            alert("Enter correct credentials");
+        }
+        //$location.path("/createAccountView");
         // alert(username+"---"+password);
         // Hash the password and validate it with password in the backend
     }
 });
-app.controller('createAccount',function($scope,$location){
+app.controller('homeController',function($scope,$location){
     
     });
     
