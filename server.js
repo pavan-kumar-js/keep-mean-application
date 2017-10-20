@@ -2,6 +2,9 @@ var express = require('express');
 var bodyParser =  require("body-parser");
 
 var app = express();
+
+var port = process.env.PORT || 3000;
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -11,6 +14,6 @@ app.get('/',function(req,res){
     res.sendFile(__dirname + '/' + 'index.html');
 });
 
-app.listen(3000, function() {
-    console.log('Server listening on port 3000');
+app.listen(port, function() {
+    console.log('Server listening on port '+port);
 });

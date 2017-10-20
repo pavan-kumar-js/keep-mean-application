@@ -1,39 +1,61 @@
 
-       
-       <section>
-          
-         <div ng-controller="homeController">
+                 
+        <div ng-app="safe" ng-controller="homeController">       
             <md-toolbar id="toolbarcss" class="md-hue-2">
                 <div class="md-toolbar-tools">
-                  <md-button class="md-icon-button" aria-label="Settings">
-                    <md-icon md-svg-icon="/icons/menu.svg"></md-icon>
+                  <md-button id="settings" class="md-icon-button" ng-click="toggle()"aria-label="Settings">
+                    <md-icon  md-svg-icon="/icons/menu.svg"></md-icon>
                   </md-button>
           
                   <h2 id="textColor" flex md-truncate>Safe - Note Keeper</h2>
-                  <input id="searchBox" class="form-control ng-pristine ng-valid" placeholder="Search Notes" type="text"/>
                   <md-button class="md-icon-button" aria-label="More">
                     <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
                   </md-button>
                 </div>
               </md-toolbar>
-              <div align="center" id="cardcss">
-               <!--   <div id="centerProcess">
-                      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                    </div>-->
-              <md-grid-list layout-fill flex md-cols-sm="1" md-cols-md="2" md-cols-gt-md="2" md-row-height-sm="20%" md-row-height="15%" md-gutter="20px">
-                  <md-grid-tile ng-repeat="record in records">
-                      <md-card class="z-depth" layout-fill layout-padding ng-click="cardClicked(record)">
-                          <md-card-title>
-                            <md-card-title-text>
-                              <span class="md-headline">{{record.title}}</span>
-                              <span class="md-subhead">{{record.sub}}</span>
-                            </md-card-title-text>
-                          </md-card-title>
-                      </md-card>
-                  </md-grid-tile>
-              </md-grid-list>
-              </div>
          </div>
-       </section>
+         <div ng-app="safe" ng-controller="homeController" layout-fill>
+              <md-content flex class="md-padding">
+                  <div align="center" id="cardcss">
+                      <!-- <div id="centerProcess">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                          </div>-->
+                         
+                  <md-grid-list layout-fill flex md-cols-sm="1" md-cols-md="2" md-cols-gt-md="2" md-row-height-sm="20%" md-row-height="15%" md-gutter="20px">
+                        <md-grid-tile ng-repeat="record in records">
+                            <md-card class="z-depth" layout-fill layout-padding ng-click="cardClicked(record)">
+                                <md-card-title>
+                                  <md-card-title-text>
+                                    <span class="md-headline">{{record.title}}</span>
+                                    <span class="md-subhead">{{record.sub}}</span>
+                                  </md-card-title-text>
+                                </md-card-title>
+                            </md-card>
+                        </md-grid-tile>
+                    </md-grid-list>
+                    </div>
+              </md-content>
+              <md-button id="floatingbutton" class="md-primary md-fab md-fab-bottom-right">
+                  <md-icon  md-svg-icon="/icons/add.svg"></md-icon>
+                  </md-icon>
+                </md-button>
+              <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+                  <md-toolbar id="navMenuHeader" class="md-theme-light">
+                    <h1 class="md-toolbar-tools">Account Menu</h1>
+                  </md-toolbar>
+                  <ul id="ulparams" ng-repeat="x in y">
+                      <ul id="ulparams">
+                        <li ng-repeat="section in menu" >
+                          <md-button class="md-primary" id="item">{{section}}</md-button>
+                          
+                        </li>
+                      </ul>
+                      <md-divider ></md-divider>
+                      <ul>
+                      </md-sidenav>
+            
+          </div>
+              
+    
        
        

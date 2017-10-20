@@ -37,7 +37,24 @@ app.controller('loginController',function($scope,$location){
         // Hash the password and validate it with password in the backend
     }
 });
-app.controller('homeController',function($scope,$location){
+app.controller('homeController',function($scope,$location,$scope, $timeout, $mdSidenav, $mdComponentRegistry, $log){
+    
+    $mdComponentRegistry
+    .when('left')
+    .then( function(sideNav){
+
+      $scope.isOpen = angular.bind( sideNav, sideNav.isOpen );
+      $scope.toggle = angular.bind( sideNav, sideNav.toggle );
+
+    });
+  $scope.toggleRight = function() {
+    $mdSidenav('left').toggle()
+                        .then(function(){
+                          $log.debug("toggle left menu is done");
+                        });
+  };
+
+
     $scope.records=[];
     var rec1 = {
         "title":"Pavan",
@@ -49,7 +66,8 @@ app.controller('homeController',function($scope,$location){
     };
     $scope.records.push(rec1);
     $scope.records.push(rec2);
-
+    $scope.y=["Menu 1","Menu 2"];
+    $scope.menu = ["Pavan","Kumar"];
     $scope.cardClicked = function(record){
         //Card is clicked, Do something
         alert("Card is clicked -- "+JSON.stringify(record));
