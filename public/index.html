@@ -1,9 +1,12 @@
 <html ng-app="safe" lang="en">
                 <head>
+                    <style>
+                      html, body {margin: 0; height: 100%; overflow: hidden}
+                      </style>
                    <title>Safe.</title>
                    <meta name="viewport" content="width=device-width, initial-scale=1">
                    <link rel="stylesheet" href="./elements.css">
-                      
+                                         
                    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
                    <!-- Angular Material style sheet -->
                    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css">
@@ -17,10 +20,21 @@
                    <!-- Angular Material Library -->
                    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
                    <script src="./angular.js"></script>  
-                   <script src="./angular-route.js"></script>                  
+                   <script src="./angular-route.js"></script> 
+                   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+                   <meta name="google-signin-client_id" content="342123845422-kebk1b9nl0k67a3ur0e33oefd95qm4ar.apps.googleusercontent.com">
+                   <script src="https://apis.google.com/js/platform.js"></script>
+                   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+                   
                 </head>
                 <body >
+                   
                   <div ng-view></div>
+                  <div style="position: relative; top:80%;left:46%">
+                      <div class="g-signin2" data-onsuccess="loginSuccess"></div>
+                  </div>
+                  
+                                      
                   <script src="./controller.js"></script>
                 </body>
              </html>

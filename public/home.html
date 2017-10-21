@@ -41,13 +41,16 @@
                 </md-button>
               <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
                   <md-toolbar id="navMenuHeader" class="md-theme-light">
-                    <h1 class="md-toolbar-tools">Account Menu</h1>
+                    <div style="padding-left:10%;padding-top:10%">
+                        <img class="userPic" ng-src="{{userProps.image}}"/>
+                    </div>
+                      
+                      <h1 class="md-toolbar-tools" style="padding-left:17%;color:white">{{userProps.email}}</h1>
                   </md-toolbar>
                   <ul id="ulparams" ng-repeat="x in y">
                       <ul id="ulparams">
                         <li ng-repeat="section in menu" >
                           <md-button class="md-primary" id="item">{{section}}</md-button>
-                          
                         </li>
                       </ul>
                       <md-divider ></md-divider>
