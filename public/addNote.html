@@ -1,0 +1,32 @@
+
+<md-dialog style="width:120%" aria-label="Note (Add)">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Add Note</h2>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content layout="column">
+            <md-input-container style="margin-left:2%;margin-right:50%;margin-top:5%;height:10%">
+                    <label>Note Title</label>
+                    <input ng-model="noteTitle"/>
+                  </md-input-container>
+            <md-input-container style="margin-left:2%;margin-right:10%;height:35%">
+                        <label>Enter Note</label>
+            <textarea ng-model="noteBody"></textarea>
+            </md-input-container>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+            <md-button class ="md-warn md-raised" ng-click="cancel()">
+                    Cancel
+                   </md-button>
+      <span flex></span>
+      
+      <md-button style="right:2%" class="md-primary md-raised" ng-click="createNote()">
+        Add
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

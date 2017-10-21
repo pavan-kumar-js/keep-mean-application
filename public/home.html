@@ -8,8 +8,8 @@
                   </md-button>
           
                   <h2 id="textColor" flex md-truncate>Safe - Note Keeper</h2>
-                  <md-button class="md-icon-button" aria-label="More">
-                    <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+                  <md-button style="right:1%" class="md-icon-button" aria-label="More">
+                    <md-icon md-svg-icon="/icons/more.svg"></md-icon>
                   </md-button>
                 </div>
               </md-toolbar>
@@ -35,25 +35,26 @@
                     </md-grid-list>
                     </div>
               </md-content>
-              <md-button id="floatingbutton" class="md-primary md-fab md-fab-bottom-right">
+              <md-button ng-click = "addNote($event)" id="floatingbutton" class="md-primary md-fab md-fab-bottom-right">
                   <md-icon  md-svg-icon="/icons/add.svg"></md-icon>
                   </md-icon>
                 </md-button>
               <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
                   <md-toolbar id="navMenuHeader" class="md-theme-light">
-                    <div style="padding-left:10%;padding-top:10%">
+                    <div style="padding-left:13%;padding-top:12%">
                         <img class="userPic" ng-src="{{userProps.image}}"/>
                     </div>
-                      
-                      <h1 class="md-toolbar-tools" style="padding-left:17%;color:white">{{userProps.email}}</h1>
+                      <p class="md-toolbar-tools" style="font-weight:normal;font-size:18px;padding-top:7%;padding-left:13%;color:white">{{userProps.name}}</p>  
+                      <p class="md-toolbar-tools" style="font-weight:normal;font-size:18px;padding-bottom:6%;padding-left:13%;color:white">{{userProps.email}}</p>
                   </md-toolbar>
-                  <ul id="ulparams" ng-repeat="x in y">
-                      <ul id="ulparams">
-                        <li ng-repeat="section in menu" >
-                          <md-button class="md-primary" id="item">{{section}}</md-button>
+                  <ul id="ulparams">
+                      <li>
+                          <md-button class="md-primary" ng-click="toggle()"id="item">Notes</md-button>
                         </li>
-                      </ul>
                       <md-divider ></md-divider>
+                        <li>
+                          <md-button class="md-primary" ng-click="scopeLogout($event)" id="item">Logout</md-button>
+                        </li>
                       <ul>
                       </md-sidenav>
             

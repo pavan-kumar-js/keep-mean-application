@@ -1,8 +1,9 @@
 (function(){
     var userProp ={
-        name : "",
+        name : "123",
         image: "",
-        email:""
+        email:"123",
+        login:"email"
     };
     var app = angular.module('safe',['ngRoute','ngMaterial']);
     
@@ -37,7 +38,6 @@ loginSuccess = function(googleUserData){
 logOut = function(){
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function(){
-        alert("Successfully signed out");
         var currentScreen = window.location.href
         var index = currentScreen.indexOf('/home')
         var loginScreen = currentScreen.substr(0,index);
@@ -46,7 +46,7 @@ logOut = function(){
     })
 };
 
-app.controller('loginController',function($scope,$location){
+app.controller('loginController',function($scope,$http,$location){
     $scope.myname = "";
     $scope.username=  "";   
     $scope.password = "";
@@ -55,15 +55,28 @@ app.controller('loginController',function($scope,$location){
     $scope.authorizeUserCredentials= function(){
         var username = $scope.username;
         var password = $scope.password;
-        if(username == "admin" && password =="admin"){
-            $location.path("/home");
-        }
-        else{
-            alert("Enter correct credentials");
-        }
+
+        $http({
+            method: 'GET',
+            url: '/verifyUser',
+            params:{"username":username,"password":password}
+         }).then(function (success){
+             if(success.data.length == 1){
+                 userProp.name = success.data[0].username;
+                 userProp.email = success.data[0].email;
+                 userProp.image = "http://www.squawka.com/news/wp-content/uploads/2017/05/Zlatan-Ibrahimovic-1.jpg?resolution=940,1"
+;                userProp.login = "email";
+                 $location.path('/home');
+             }
+             else{
+                alert("Incorrect credentials");
+             }
+         },function (error){
+            console.log(error);
+         });
     }
 });
-app.controller('homeController',function($scope,$location,$scope, $timeout, $mdSidenav, $mdComponentRegistry, $log){
+app.controller('homeController',function($scope,$http,$location,$scope, $timeout, $mdSidenav, $mdComponentRegistry, $log,$mdDialog){
     
     $mdComponentRegistry
     .when('left')
@@ -82,29 +95,68 @@ app.controller('homeController',function($scope,$location,$scope, $timeout, $mdS
 
 
     $scope.records=[];
-    var rec1 = {
-        "title":"Pavan",
-        "sub":"Kumar"
-    };
-    var rec2 = {
-        "title":"Abhishek",
-        "sub":"Singh"
-    };
+    $http({
+        method: 'GET',
+        url: '/getNotes'
+     }).then(function (success){
+         $scope.records = success.data;
+        console.log(success.data);
+     },function (error){
+        console.log(error);
+     });
     $scope.userProps = {
         "name": userProp.name,
         "image":userProp.image,
         "email" :userProp.email
     };
-    $scope.records.push(rec1);
-    $scope.records.push(rec2);
+
     $scope.y=["Menu 1","Menu 2"];
     $scope.menu = ["Pavan","Kumar"];
     $scope.cardClicked = function(record){
-        //Card is clicked, Do something
-        if(record.title == "Pavan"){
+        if(record.title == "Note 1"){
             logOut();
         }
     }
+    $scope.scopeLogout = function(ev){
+        $mdDialog.show(
+            $mdDialog.alert()
+              .parent(angular.element(document.querySelector('#popupContainer')))
+              .clickOutsideToClose(true)
+              .title('Logged out')
+              .textContent('You have been successfully logged out')
+              .ariaLabel('Alert Dialog Demo')
+              .ok('Ok')
+              .targetEvent(ev)
+          );
+        logOut();
+        
+    }
+
+    $scope.addNote = function(ev) {
+        $mdDialog.show({
+          controller: dialogController,
+          templateUrl: 'addNote.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true,
+          fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+        .then(function() {
+        }, function() {
+        });
+      };
+
+      dialogController = function($scope, $mdDialog) {
+        $scope.noteTitle="";
+        $scope.noteBody = "";
+        $scope.cancel = function() {
+          $mdDialog.cancel();
+        };  
+        $scope.createNote = function() {
+            $scope.cancel();
+            //write note creation login here
+        };
+      }
     });
 })()
 
